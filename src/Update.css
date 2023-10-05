@@ -1,0 +1,40 @@
+h3 {
+    background-image: radial-gradient(white, yellow, green);
+}
+
+.formDisplay {
+    width: 30%;
+    background-image: radial-gradient(white, blue);
+    padding: 5px;
+    border: 4px solid white;
+    border-style: outset;
+    margin-bottom: 9px;
+}
+
+table,
+thead,
+td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-style: inset;
+
+}
+
+thead {
+    background-image: linear-gradient(white, green);
+}
+
+td {
+    text-align: center;
+}
+
+button {
+    border-radius: 5px;
+    border-style: inset;
+    box-shadow: 1px 1px 1px 1px rgba(30, 35, 15, 1);
+    margin: 1px;
+}
+
+.btn-remove {
+    background-image: linear-gradient(red, white);
+}
