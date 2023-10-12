@@ -22,8 +22,8 @@ export default function Update() {
         <td>{user.userId}</td>
         <td>{user.title}</td>
         <td>{user.body}</td>
-        <td><button onClick={() => setData(user)}>Update</button></td>
-        <td><button onClick={() => handleRemoveData(user.id)} className='btn-remove'>Remove</button></td>
+        <td><button onClick={() => setData(user)} className='update-btn'>Update</button></td>
+        <td><button onClick={() => handleRemoveData(user.id)} className='remove-btn'>Remove</button></td>
       </tr>
     )
   }
@@ -68,22 +68,37 @@ export default function Update() {
     }).then((response) => response.json())
       .then((value) => setApiData(apidata.map((user) => user.id == id ? user = value : user)))
     setModify(false);
+    setTimeout(() => alert('data is updated successfully'), 2000)
   }
 
-  const handleRemoveData = (id) => {
-    // console.log(id);
-    //Todo : need to create the nice alert warning while removing the user
-
-    fetch(`${baseURL}/${id}`, {
+  const deleteData = (id) => {
+    fetch(`${baseURL} / ${id} `, {
       method: 'DELETE',
     }).then((response) => response.json())
       .then((users) => setApiData(apidata.filter((user) => user.id !== id)))
+    setTimeout(() => {
+      alert("data is removed successfully");
+    }, 2000)
+  }
+
+  const handleRemoveData = (id) => {
+    //Todo : need to create the nice alert warning while removing the user
+    modify ? alert("please close the update form") : deleteData(id)
+
+  };
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    setModify(false);
   }
 
 
   return (
     <center>
       {modify ? (<form className="formDisplay"  >
+        <div style={{ display: 'flex', flexDirection: "row-reverse" }}>
+          <button className='close-btn' onClick={handleClose} title='close'>X</button>
+        </div>
         <label >UserID</label>
         <input type="number" value={userId} onChange={(e) => setUserId(e.target.value)} />
         <br />
@@ -96,8 +111,9 @@ export default function Update() {
         <input type="text" value={body} onChange={(e) => setBody(e.target.value)} />
         <br />
         <br />
-        <button type='submit' onClick={updateApiData}>Update</button>
-      </form>) : <h3>Form will appear , once update button is clicked!</h3>}
+        <button type='submit' onClick={updateApiData} >Update</button>
+      </form>) : <h3>Form will appear , once update button is clicked!</h3>
+      }
       <table>
         <thead>
           <tr>
@@ -113,6 +129,6 @@ export default function Update() {
           {tableRows}
         </tbody>
       </table>
-    </center>
+    </center >
   )
 }

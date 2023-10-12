@@ -28,6 +28,17 @@ td {
     text-align: center;
 }
 
+.close-btn {
+    max-width: 10%;
+    border-radius: 15px;
+    box-shadow: none;
+}
+
+
+.remove-btn {
+    background-image: linear-gradient(red, white);
+}
+
 button {
     border-radius: 5px;
     border-style: inset;
@@ -35,6 +46,4 @@ button {
     margin: 1px;
 }
 
-.btn-remove {
-    background-image: linear-gradient(red, white);
-}
+/* .update-btn:active {} */
